@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : \\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc
 Date     : 5/4/2017
-Time     : 4:42:08 AM
+Time     : 3:56:47 PM
 
 Processing Rule : Modified Polygon (Allow modified: No), (Allow shelved: No)
 Rule Violations :0
@@ -43,10 +43,9 @@ Processing Rule : Minimum Solder Mask Sliver (Gap=10mil) (All),(All)
    Violation between Minimum Solder Mask Sliver Constraint: (3.811mil < 10mil) Between Pad U10-1(163.067mil,3453.973mil) on Top Layer And Pad U10-2(163.067mil,3479.563mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]
    Violation between Minimum Solder Mask Sliver Constraint: (3.591mil < 10mil) Between Pad JP3-D-(-425mil,3665.591mil) on Top Layer And Pad JP3-VBUS(-425mil,3691.181mil) on Top Layer [Top Solder] Mask Sliver [3.591mil]
    Violation between Minimum Solder Mask Sliver Constraint: (4mil < 10mil) Between Pad JP3-ID(-425mil,3614mil) on Top Layer And Pad JP3-GND(-425mil,3588mil) on Top Layer [Top Solder] Mask Sliver [4mil]
-   Violation between Minimum Solder Mask Sliver Constraint: (7.59mil < 10mil) Between Via (-425mil,3691.181mil) from Top Layer to Bottom Layer And Pad JP3-D-(-425mil,3665.591mil) on Top Layer [Top Solder] Mask Sliver [7.59mil]
    Violation between Minimum Solder Mask Sliver Constraint: (3.591mil < 10mil) Between Pad JP3-D+(-425mil,3640mil) on Top Layer And Pad JP3-D-(-425mil,3665.591mil) on Top Layer [Top Solder] Mask Sliver [3.591mil]
    Violation between Minimum Solder Mask Sliver Constraint: (4mil < 10mil) Between Pad JP3-ID(-425mil,3614mil) on Top Layer And Pad JP3-D+(-425mil,3640mil) on Top Layer [Top Solder] Mask Sliver [4mil]
-Rule Violations :36
+Rule Violations :35
 
 Processing Rule : Hole To Hole Clearance (Gap=10mil) (All),(All)
 Rule Violations :0
@@ -97,5 +96,5 @@ Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
 Rule Violations :0
 
 
-Violations Detected : 60
-Time Elapsed        : 00:00:02
+Violations Detected : 59
+Time Elapsed        : 00:00:04
