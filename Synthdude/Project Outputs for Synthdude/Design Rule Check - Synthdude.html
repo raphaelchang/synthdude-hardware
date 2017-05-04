@@ -1,0 +1,504 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD16\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">5/4/2017</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">4:42:08 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc" class="file"><acronym title="\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc">\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">60</td></tr>
+</table>
+</td>
+</table><a name="IDUUMRJ4N1B23KNX4O1ISJVRG3RH3SITBSDPTNEILSV4H3J3VBNFDH"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2TBPVZW50XQJCPCZPGVLP5B3MEVVVPKQ3GSMJUDXJGUTYVMLKOXO">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEJ11E2AJELNVNJZPMXFSC50MBJR4PKLLZL4ZM2KMBL2BFXAOPMBK">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVR233LJVX4AJKXXRC5NXQU2SSWZWB3KHYRKGZNIDW1TDTVCC3J">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">36</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOMWQESOPL4UFNARJSQW2RNVSNJD1FL4LPXEAYMJYDZWU3XMWSWF">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRMHSTCUTOXQ1BKKU13D05PCXKPS33SMYLLBXUFD2IME02EB0YRLK">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGVBFV1LRHO3RKXICKX1WD4S4GF0PMMTIKPMCYGO5NX4CJGLJLTP">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDY5GO12QHAPYCHEGAWFV0UL0BLZUHJUCXZ5IQHP22RWBHZT0XA5L">Width Constraint (Min=10mil) (Max=30mil) (Preferred=10mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0ABL0OLEOX1AKZLGQSS3NL23INH0VOI30Z40DTJCAJMNZHLXBH5K">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOMS5XNOZVJBKNEWDC50WDZ3KUD4LNGOUFYJQ3KOXPUS4YGKFWWUN">Clearance Constraint (Gap=6mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDBCKK43OCROLILGC0XKAJWVKX2LNFZJRAU5NHCZODZZTQKRQSCINE">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">24</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4JGNGS0JKILZKBE5YWFSVULWROQPICMFOPGC3NEQQXJMB2HAFSXB">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">60</td>
+</tr>
+</table><br><a name="IDVR233LJVX4AJKXXRC5NXQU2SSWZWB3KHYRKGZNIDW1TDTVCC3J"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13249.375mil|Location2.X=13260.625mil|Location1.Y=10642.985mil|Location2.Y=10654.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13249.375mil|Location2.X=13260.625mil|Location1.Y=10642.985mil|Location2.Y=10654.235mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8mil &lt; 10mil) Between Pad JP2-3(-340mil,1669.11mil) on Multi-Layer And Pad JP2-4(-340mil,1748.11mil) on Multi-Layer [Top Solder] Mask Sliver [8mil] / [Bottom Solder] Mask Sliver [8mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13249.375mil|Location2.X=13260.625mil|Location1.Y=10564.115mil|Location2.Y=10575.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13249.375mil|Location2.X=13260.625mil|Location1.Y=10564.115mil|Location2.Y=10575.365mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.74mil &lt; 10mil) Between Pad JP2-2(-340mil,1590.37mil) on Multi-Layer And Pad JP2-3(-340mil,1669.11mil) on Multi-Layer [Top Solder] Mask Sliver [7.74mil] / [Bottom Solder] Mask Sliver [7.74mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13249.375mil|Location2.X=13260.625mil|Location1.Y=10485.375mil|Location2.Y=10496.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13249.375mil|Location2.X=13260.625mil|Location1.Y=10485.375mil|Location2.Y=10496.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.74mil &lt; 10mil) Between Pad JP2-1(-340mil,1511.63mil) on Multi-Layer And Pad JP2-2(-340mil,1590.37mil) on Multi-Layer [Top Solder] Mask Sliver [7.74mil] / [Bottom Solder] Mask Sliver [7.74mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13366.225mil|Location2.X=13377.475mil|Location1.Y=11836.735mil|Location2.Y=11847.985mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13366.225mil|Location2.X=13377.475mil|Location1.Y=11836.735mil|Location2.Y=11847.985mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4.42mil &lt; 10mil) Between Pad J1-TSH(-223.15mil,2951.57mil) on Multi-Layer And Pad J1-TIP(-223.15mil,2853.15mil) on Multi-Layer [Top Solder] Mask Sliver [4.42mil] / [Bottom Solder] Mask Sliver [4.42mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13366.225mil|Location2.X=13377.475mil|Location1.Y=12132.015mil|Location2.Y=12143.265mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13366.225mil|Location2.X=13377.475mil|Location1.Y=12132.015mil|Location2.Y=12143.265mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4.42mil &lt; 10mil) Between Pad J1-RSH(-223.15mil,3148.43mil) on Multi-Layer And Pad J1-RING(-223.15mil,3246.85mil) on Multi-Layer [Top Solder] Mask Sliver [4.42mil] / [Bottom Solder] Mask Sliver [4.42mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12708.23mil|Location2.Y=12719.48mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12708.23mil|Location2.Y=12719.48mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-16(-108.586mil,3761.059mil) on Top Layer And Pad U10-15(-108.586mil,3786.65mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12682.639mil|Location2.Y=12693.889mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12682.639mil|Location2.Y=12693.889mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-17(-108.586mil,3735.469mil) on Top Layer And Pad U10-16(-108.586mil,3761.059mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12657.049mil|Location2.Y=12668.299mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12657.049mil|Location2.Y=12668.299mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-18(-108.586mil,3709.878mil) on Top Layer And Pad U10-17(-108.586mil,3735.469mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12631.458mil|Location2.Y=12642.708mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12631.458mil|Location2.Y=12642.708mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-19(-108.586mil,3684.288mil) on Top Layer And Pad U10-18(-108.586mil,3709.878mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12605.867mil|Location2.Y=12617.117mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12605.867mil|Location2.Y=12617.117mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-20(-108.586mil,3658.697mil) on Top Layer And Pad U10-19(-108.586mil,3684.288mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12580.277mil|Location2.Y=12591.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12580.277mil|Location2.Y=12591.527mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-21(-108.586mil,3633.107mil) on Top Layer And Pad U10-20(-108.586mil,3658.697mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12554.686mil|Location2.Y=12565.936mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12554.686mil|Location2.Y=12565.936mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-22(-108.586mil,3607.516mil) on Top Layer And Pad U10-21(-108.586mil,3633.107mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12529.096mil|Location2.Y=12540.346mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12529.096mil|Location2.Y=12540.346mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-23(-108.586mil,3581.925mil) on Top Layer And Pad U10-22(-108.586mil,3607.516mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12503.505mil|Location2.Y=12514.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12503.505mil|Location2.Y=12514.755mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-24(-108.586mil,3556.335mil) on Top Layer And Pad U10-23(-108.586mil,3581.925mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12477.915mil|Location2.Y=12489.165mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12477.915mil|Location2.Y=12489.165mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-25(-108.586mil,3530.744mil) on Top Layer And Pad U10-24(-108.586mil,3556.335mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12452.324mil|Location2.Y=12463.574mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12452.324mil|Location2.Y=12463.574mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-26(-108.586mil,3505.154mil) on Top Layer And Pad U10-25(-108.586mil,3530.744mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12426.734mil|Location2.Y=12437.984mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12426.734mil|Location2.Y=12437.984mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-27(-108.586mil,3479.563mil) on Top Layer And Pad U10-26(-108.586mil,3505.154mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12401.143mil|Location2.Y=12412.393mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13446.34mil|Location2.X=13457.59mil|Location1.Y=12401.143mil|Location2.Y=12412.393mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-28(-108.586mil,3453.973mil) on Top Layer And Pad U10-27(-108.586mil,3479.563mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12708.23mil|Location2.Y=12719.48mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12708.23mil|Location2.Y=12719.48mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-13(163.067mil,3761.059mil) on Top Layer And Pad U10-14(163.067mil,3786.65mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12682.639mil|Location2.Y=12693.889mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12682.639mil|Location2.Y=12693.889mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-12(163.067mil,3735.469mil) on Top Layer And Pad U10-13(163.067mil,3761.059mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12657.049mil|Location2.Y=12668.299mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12657.049mil|Location2.Y=12668.299mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-11(163.067mil,3709.878mil) on Top Layer And Pad U10-12(163.067mil,3735.469mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12631.458mil|Location2.Y=12642.708mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12631.458mil|Location2.Y=12642.708mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-10(163.067mil,3684.288mil) on Top Layer And Pad U10-11(163.067mil,3709.878mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12605.867mil|Location2.Y=12617.117mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12605.867mil|Location2.Y=12617.117mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-9(163.067mil,3658.697mil) on Top Layer And Pad U10-10(163.067mil,3684.288mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12580.277mil|Location2.Y=12591.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12580.277mil|Location2.Y=12591.527mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-8(163.067mil,3633.107mil) on Top Layer And Pad U10-9(163.067mil,3658.697mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12554.686mil|Location2.Y=12565.936mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12554.686mil|Location2.Y=12565.936mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-7(163.067mil,3607.516mil) on Top Layer And Pad U10-8(163.067mil,3633.107mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12529.096mil|Location2.Y=12540.346mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12529.096mil|Location2.Y=12540.346mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-6(163.067mil,3581.925mil) on Top Layer And Pad U10-7(163.067mil,3607.516mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12503.505mil|Location2.Y=12514.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12503.505mil|Location2.Y=12514.755mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-5(163.067mil,3556.335mil) on Top Layer And Pad U10-6(163.067mil,3581.925mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12477.915mil|Location2.Y=12489.165mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12477.915mil|Location2.Y=12489.165mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-4(163.067mil,3530.744mil) on Top Layer And Pad U10-5(163.067mil,3556.335mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12452.324mil|Location2.Y=12463.574mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12452.324mil|Location2.Y=12463.574mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-3(163.067mil,3505.154mil) on Top Layer And Pad U10-4(163.067mil,3530.744mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12426.734mil|Location2.Y=12437.984mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12426.734mil|Location2.Y=12437.984mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-2(163.067mil,3479.563mil) on Top Layer And Pad U10-3(163.067mil,3505.154mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12401.143mil|Location2.Y=12412.393mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13717.993mil|Location2.X=13729.243mil|Location1.Y=12401.143mil|Location2.Y=12412.393mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 10mil) Between Pad U10-1(163.067mil,3453.973mil) on Top Layer And Pad U10-2(163.067mil,3479.563mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13132.375mil|Location2.X=13143.625mil|Location1.Y=12612.761mil|Location2.Y=12624.011mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13132.375mil|Location2.X=13143.625mil|Location1.Y=12612.761mil|Location2.Y=12624.011mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.591mil &lt; 10mil) Between Pad JP3-D-(-425mil,3665.591mil) on Top Layer And Pad JP3-VBUS(-425mil,3691.181mil) on Top Layer [Top Solder] Mask Sliver [3.591mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13132.375mil|Location2.X=13143.625mil|Location1.Y=12535.375mil|Location2.Y=12546.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13132.375mil|Location2.X=13143.625mil|Location1.Y=12535.375mil|Location2.Y=12546.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4mil &lt; 10mil) Between Pad JP3-ID(-425mil,3614mil) on Top Layer And Pad JP3-GND(-425mil,3588mil) on Top Layer [Top Solder] Mask Sliver [4mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13164.375mil|Location2.X=13175.625mil|Location1.Y=12614.761mil|Location2.Y=12626.011mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13164.375mil|Location2.X=13175.625mil|Location1.Y=12614.761mil|Location2.Y=12626.011mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.59mil &lt; 10mil) Between Via (-425mil,3691.181mil) from Top Layer to Bottom Layer And Pad JP3-D-(-425mil,3665.591mil) on Top Layer [Top Solder] Mask Sliver [7.59mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13132.375mil|Location2.X=13143.625mil|Location1.Y=12587.17mil|Location2.Y=12598.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13132.375mil|Location2.X=13143.625mil|Location1.Y=12587.17mil|Location2.Y=12598.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.591mil &lt; 10mil) Between Pad JP3-D+(-425mil,3640mil) on Top Layer And Pad JP3-D-(-425mil,3665.591mil) on Top Layer [Top Solder] Mask Sliver [3.591mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13132.375mil|Location2.X=13143.625mil|Location1.Y=12561.375mil|Location2.Y=12572.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13132.375mil|Location2.X=13143.625mil|Location1.Y=12561.375mil|Location2.Y=12572.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4mil &lt; 10mil) Between Pad JP3-ID(-425mil,3614mil) on Top Layer And Pad JP3-D+(-425mil,3640mil) on Top Layer [Top Solder] Mask Sliver [4mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDBCKK43OCROLILGC0XKAJWVKX2LNFZJRAU5NHCZODZZTQKRQSCINE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=20805mil|Location2.X=20883.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=20805mil|Location2.X=20883.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU4_15 Between Pad VR19-2(7249.37mil,3190.394mil) on Multi-Layer And Pad VR19-2(7249.37mil,4489.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=20325mil|Location2.X=20403.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=20325mil|Location2.X=20403.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU4_14 Between Pad VR18-2(6769.37mil,3190.394mil) on Multi-Layer And Pad VR18-2(6769.37mil,4489.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=19845mil|Location2.X=19923.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=19845mil|Location2.X=19923.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU4_13 Between Pad VR17-2(6289.37mil,3190.394mil) on Multi-Layer And Pad VR17-2(6289.37mil,4489.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=21285mil|Location2.X=21363.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=21285mil|Location2.X=21363.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU4_12 Between Pad VR20-2(7729.37mil,3190.394mil) on Multi-Layer And Pad VR20-2(7729.37mil,4489.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=22245mil|Location2.X=22323.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=22245mil|Location2.X=22323.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU4_5 Between Pad VR22-2(8689.37mil,3190.394mil) on Multi-Layer And Pad VR22-2(8689.37mil,4489.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=23205mil|Location2.X=23283.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=23205mil|Location2.X=23283.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU4_4 Between Pad VR24-2(9649.37mil,3190.394mil) on Multi-Layer And Pad VR24-2(9649.37mil,4489.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=22725mil|Location2.X=22803.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=22725mil|Location2.X=22803.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU4_2 Between Pad VR23-2(9169.37mil,3190.394mil) on Multi-Layer And Pad VR23-2(9169.37mil,4489.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=21765mil|Location2.X=21843.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=21765mil|Location2.X=21843.74mil|Location1.Y=12091.024mil|Location2.Y=13468.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU4_1 Between Pad VR21-2(8209.37mil,3190.394mil) on Multi-Layer And Pad VR21-2(8209.37mil,4489.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=20805mil|Location2.X=20883.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=20805mil|Location2.X=20883.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU3_15 Between Pad VR11-2(7249.37mil,300.394mil) on Multi-Layer And Pad VR11-2(7249.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=20325mil|Location2.X=20403.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=20325mil|Location2.X=20403.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU3_14 Between Pad VR10-2(6769.37mil,300.394mil) on Multi-Layer And Pad VR10-2(6769.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=19845mil|Location2.X=19923.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=19845mil|Location2.X=19923.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU3_13 Between Pad VR9-2(6289.37mil,300.394mil) on Multi-Layer And Pad VR9-2(6289.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=21285mil|Location2.X=21363.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=21285mil|Location2.X=21363.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU3_12 Between Pad VR12-2(7729.37mil,300.394mil) on Multi-Layer And Pad VR12-2(7729.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=22245mil|Location2.X=22323.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=22245mil|Location2.X=22323.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU3_5 Between Pad VR14-2(8689.37mil,300.394mil) on Multi-Layer And Pad VR14-2(8689.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=23205mil|Location2.X=23283.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=23205mil|Location2.X=23283.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU3_4 Between Pad VR16-2(9649.37mil,300.394mil) on Multi-Layer And Pad VR16-2(9649.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=22725mil|Location2.X=22803.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=22725mil|Location2.X=22803.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU3_2 Between Pad VR15-2(9169.37mil,300.394mil) on Multi-Layer And Pad VR15-2(9169.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=21765mil|Location2.X=21843.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=21765mil|Location2.X=21843.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU3_1 Between Pad VR13-2(8209.37mil,300.394mil) on Multi-Layer And Pad VR13-2(8209.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=16965mil|Location2.X=17043.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=16965mil|Location2.X=17043.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU2_15 Between Pad VR3-2(3409.37mil,300.394mil) on Multi-Layer And Pad VR3-2(3409.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=16485mil|Location2.X=16563.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=16485mil|Location2.X=16563.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU2_14 Between Pad VR2-2(2929.37mil,300.394mil) on Multi-Layer And Pad VR2-2(2929.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=16005mil|Location2.X=16083.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=16005mil|Location2.X=16083.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU2_13 Between Pad VR1-2(2449.37mil,300.394mil) on Multi-Layer And Pad VR1-2(2449.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=17445mil|Location2.X=17523.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=17445mil|Location2.X=17523.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU2_12 Between Pad VR4-2(3889.37mil,300.394mil) on Multi-Layer And Pad VR4-2(3889.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18405mil|Location2.X=18483.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18405mil|Location2.X=18483.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU2_5 Between Pad VR6-2(4849.37mil,300.394mil) on Multi-Layer And Pad VR6-2(4849.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=19365mil|Location2.X=19443.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=19365mil|Location2.X=19443.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU2_4 Between Pad VR8-2(5809.37mil,300.394mil) on Multi-Layer And Pad VR8-2(5809.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18885mil|Location2.X=18963.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=18885mil|Location2.X=18963.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU2_2 Between Pad VR7-2(5329.37mil,300.394mil) on Multi-Layer And Pad VR7-2(5329.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=17925mil|Location2.X=18003.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=\\vmware-host\Shared Folders\Documents\Projects\synthdude\Synthdude\Synthdude.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=17925mil|Location2.X=18003.74mil|Location1.Y=9201.024mil|Location2.Y=10578.976mil|Absolute=True">Un-Routed Net Constraint: Net NetU2_1 Between Pad VR5-2(4369.37mil,300.394mil) on Multi-Layer And Pad VR5-2(4369.37mil,1599.606mil) on Multi-Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

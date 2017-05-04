@@ -293,6 +293,10 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=OCPKUIXQ
 
+[GeneratedDocument1]
+DocumentPath=Project Outputs for Synthdude\Design Rule Check - Synthdude.html
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Default Configuration
 ParameterCount=0
