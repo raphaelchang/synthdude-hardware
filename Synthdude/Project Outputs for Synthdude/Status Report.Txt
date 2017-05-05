@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : PCB Document [Synthdude.PcbDoc]
+   Generated File[Synthdude.TXT]
+   Generated File[Synthdude.LDP]
+   Generated File[Synthdude.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 1:56:34 AM On 5/5/2017
